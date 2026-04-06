@@ -15,16 +15,15 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // =========================
-    // ✅ FETCH ALL RECORDS (no user filter)
-    // =========================
+    //  FETCH ALL RECORDS (no user filter)
+
     const records: PrismaRecord[] = await prisma.record.findMany({
       orderBy: { date: "desc" },
     });
 
-    // =========================
-    // 🔹 TOTALS
-    // =========================
+
+    //  TOTALS
+ 
     const income = records
       .filter((r) => r.type === "INCOME")
       .reduce((sum, r) => sum + r.amount, 0);
@@ -35,9 +34,9 @@ export async function GET() {
 
     const balance = income - expense;
 
-    // =========================
-    // 🔹 CATEGORY TOTALS
-    // =========================
+
+    //  CATEGORY TOTALS
+
     const categoryMap: Record<string, number> = {};
 
     records.forEach((r) => {
@@ -52,14 +51,14 @@ export async function GET() {
       total: categoryMap[key],
     }));
 
-    // =========================
-    // 🔹 RECENT ACTIVITY
-    // =========================
+
+    // RECENT ACTIVITY
+
     const recent = records.slice(0, 5);
 
-    // =========================
-    // 🔹 MONTHLY TREND
-    // =========================
+   
+    //  MONTHLY TREND
+
     const monthlyMap: Record<string, number> = {};
 
     records.forEach((r) => {
@@ -79,9 +78,9 @@ export async function GET() {
       total: monthlyMap[key],
     }));
 
-    // =========================
-    // ✅ RESPONSE
-    // =========================
+
+    //  RESPONSE
+
     return NextResponse.json({
       income,
       expense,

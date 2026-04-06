@@ -54,38 +54,3 @@ export function verifyToken(token: string): JwtUserPayload | null {
   }
 }
 
-// import { NextResponse } from "next/server";
-// import { verifyToken } from "./lib/auth";
-// import type { NextRequest } from "next/server";
-
-// export function middleware(req: NextRequest) {
-//   const token = req.cookies.get("token")?.value;
-
-//   if (!token) {
-//     return NextResponse.redirect(new URL("/login", req.url));
-//   }
-
-//   const user: any = verifyToken(token);
-
-//   if (!user) {
-//     return NextResponse.redirect(new URL("/login", req.url));
-//   }
-
-//   const path = req.nextUrl.pathname;
-
-//   // // Viewer restrictions
-//   // if (path.startsWith("/analytics") && user.role === "VIEWER") {
-//   //   return NextResponse.redirect(new URL("/dashboard", req.url));
-//   // }
-
-//   // // Admin-only page
-//   // if (path.startsWith("/admin") && user.role !== "ADMIN") {
-//   //   return NextResponse.redirect(new URL("/dashboard", req.url));
-//   // }
-
-//   return NextResponse.next();
-// }
-
-// export const config = {
-//   matcher: ["/dashboard/:path*", "/analytics/:path*", "/admin/:path*"],
-// };

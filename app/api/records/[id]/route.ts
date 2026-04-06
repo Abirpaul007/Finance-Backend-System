@@ -13,7 +13,7 @@ const recordSchema = z.object({
   note: z.string().optional(),
 });
 
-// ✅ DELETE RECORD
+// DELETE RECORD
 export async function DELETE(
   req: Request,
   context: { params: Promise<{ id: string }> }
@@ -60,7 +60,7 @@ export async function DELETE(
   }
 }
 
-// ✅ UPDATE RECORD
+//  UPDATE RECORD
 export async function PUT(
   req: Request,
   context: { params: Promise<{ id: string }> }
@@ -82,10 +82,10 @@ export async function PUT(
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    // 🔹 Parse body
+    //  Parse body
     const body = await req.json();
 
-    // 🔹 Validate
+    //  Validate
     const parsed = recordSchema.safeParse(body);
 
     if (!parsed.success) {

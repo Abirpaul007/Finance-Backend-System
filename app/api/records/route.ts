@@ -13,7 +13,7 @@ const recordSchema = z.object({
   note: z.string().optional(),
 });
 
-// ✅ GET ALL RECORDS
+//  GET ALL RECORDS
 export async function GET() {
   try {
     const cookieStore = await cookies();
@@ -42,7 +42,7 @@ export async function GET() {
   }
 }
 
-// ✅ CREATE RECORD (ADMIN ONLY)
+//  CREATE RECORD (ADMIN ONLY)
 export async function POST(req: Request) {
   try {
     const cookieStore = await cookies();
@@ -64,10 +64,10 @@ export async function POST(req: Request) {
       );
     }
 
-    // 🔹 Parse body
+    //  Parse body
     const body = await req.json();
 
-    // 🔹 Validate input
+    // Validate input
     const parsed = recordSchema.safeParse(body);
 
     if (!parsed.success) {
@@ -82,7 +82,7 @@ export async function POST(req: Request) {
 
     const { amount, type, category, date, note } = parsed.data;
 
-    // 🔹 Create record
+    //  Create record
     const record = await prisma.record.create({
       data: {
         amount,
