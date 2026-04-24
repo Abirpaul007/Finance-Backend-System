@@ -1,4 +1,4 @@
-# 💰 Zorvyn Finance Backend System
+# 💰Finance Backend System
 
 ## 🚀 Overview
 
